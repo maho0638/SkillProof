@@ -8,7 +8,7 @@ permissions:
 jobs:
   live:
     # Single authorized push; future routine commits cannot cause testnet transactions.
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_STUDIONET_PROOF') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_STUDIONET_PROOF' || github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_FINISH_ATTESTATIONS')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 65
     steps:
@@ -21,5 +21,5 @@ jobs:
         run: |
           echo "COMMIT=${GITHUB_SHA}"
           sha256sum contracts/*.py
-      - name: Deploy and execute FULL two-account lifecycle on Studionet
+      - name: Resume existing v2 contract and verify two-account attestations
         run: gltest tests/integration/test_studionet.py -v -s --network studionet

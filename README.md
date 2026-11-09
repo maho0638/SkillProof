@@ -29,4 +29,18 @@ python -m pytest -q tests/test_direct_sdk.py
 genvm-lint check contracts/SkillProof.py
 ```
 
-**Evidence policy:** Previous SkillProof v1 Studionet deployment and its receipt are historical and **do not validate this v2 contract**. This rebuild requires a fresh v2 deployment and live receipt before a GenLayer Portal submission.
+**Evidence policy:** SkillProof v2 has its own new verified Studionet deployment and complete two-wallet, consensus-backed lifecycle receipt. Earlier SkillProof v1 addresses are historical, not v2 evidence.
+
+## SkillProof v2 real public Studionet evidence — 9 November 2026
+
+- **New v2 contract / Explorer:** https://explorer-studio.genlayer.com/address/0x128c10a32Cad9c478c5C05113aB24C1B1F6CD036
+- **Complete independent two-wallet live execution, consensus + readback:** https://github.com/maho0638/SkillProof/actions/runs/42619075598
+- **Official 5 Direct SDK tests + GenVM static verification:** https://github.com/maho0638/SkillProof/actions/runs/42618038812
+- **Deployed source revision:** `446e017b6b34d56fd707ac87afcba29f0206a374`
+- **Teacher / offer tx:** `0xa3f3680339a0f22747edc201a38ea317d428ed227f2e3328459396e04abf3b68`
+- **Learner request and validator consensus MATCH tx:** `0x7e01e7386a5e74cbf881f9e940f9eafcc376e8eb93ae687fafe0e773d49905f3`
+- **Learner signed session digest tx:** `0x41ed30bb59a6e6a2e92634946ea5861d259a215c86b71fd67769be67856a2d65`
+- **Teacher signed the SAME digest tx:** `0x7d4d944002a846969149df467a8db025c179b70c7f6faec992a23acdfe47b84e`
+- **Public final state:** `ATTESTED`, matching SHA-256 `febd06a715f8153f03b7c6d520d7ee013dafd0bfeb3f3b0e8b476c58a57322a1`
+
+Both signers were distinct testnet accounts. The last state was independently read back on-chain, after both transactions completed. This is a content-bound mutual consent **record**, not proof of actual skill, attendance, or academic credentials. No mainnet transactions occurred.

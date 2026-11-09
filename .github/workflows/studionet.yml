@@ -1,14 +1,11 @@
 name: SkillProof v2 public Studionet proof
 on:
-  push:
-    branches: [main]
+  # Explicit manual testnet action only; no repeat deployments on push.
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   live:
-    # Single authorized push; future routine commits cannot cause testnet transactions.
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_STUDIONET_PROOF' || (github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_FINISH_ATTESTATIONS' || github.event.head_commit.message == 'RUN_ONCE_SKILLPROOF_V2_FULL_RETRY'))) }}
     runs-on: ubuntu-latest
     timeout-minutes: 65
     steps:

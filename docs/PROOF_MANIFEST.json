@@ -1,0 +1,23 @@
+{
+  "project": "SkillProof",
+  "version": 2,
+  "network": "public GenLayer Studionet",
+  "source_commit": "446e017b6b34d56fd707ac87afcba29f0206a374",
+  "contract_address": "0x128c10a32Cad9c478c5C05113aB24C1B1F6CD036",
+  "explorer_url": "https://explorer-studio.genlayer.com/address/0x128c10a32Cad9c478c5C05113aB24C1B1F6CD036",
+  "workflow_run": "https://github.com/maho0638/SkillProof/actions/runs/42619075598",
+  "sdk_run": "https://github.com/maho0638/SkillProof/actions/runs/42618038812",
+  "checks": "5/5 Direct SDK PASS and GenVM lint PASS",
+  "teacher": "0x484Af10Bda1734a2b85De2fE88125E05e64ba3D0",
+  "learner": "0x5669F8f249703587096eAF1785D9bF3fDB174981",
+  "match": "MATCH",
+  "final_state": "ATTESTED",
+  "sha256": "febd06a715f8153f03b7c6d520d7ee013dafd0bfeb3f3b0e8b476c58a57322a1",
+  "transactions": {
+    "offer": "0xa3f3680339a0f22747edc201a38ea317d428ed227f2e3328459396e04abf3b68",
+    "match": "0x7e01e7386a5e74cbf881f9e940f9eafcc376e8eb93ae687fafe0e773d49905f3",
+    "learner_attestation": "0x41ed30bb59a6e6a2e92634946ea5861d259a215c86b71fd67769be67856a2d65",
+    "teacher_attestation": "0x7d4d944002a846969149df467a8db025c179b70c7f6faec992a23acdfe47b84e"
+  },
+  "limitations": "Wallet agreement is not a skill credential or independent proof of actual lesson"
+}

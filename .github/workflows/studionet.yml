@@ -1,8 +1,6 @@
 name: SkillProof public Studionet proof
 on:
-  push:
-    paths:
-      - '.github/workflows/studionet.yml'
+  # Manual only to avoid repeat testnet transaction fees on pushes.
   workflow_dispatch:
 permissions:
   contents: read

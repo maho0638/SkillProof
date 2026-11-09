@@ -22,6 +22,13 @@ python -m pytest -q tests/test_direct_sdk.py
 genvm-lint check contracts/SkillProof.py
 ```
 
-`.github/workflows/checks.yml` runs SDK Direct tests and GenVM lint. `.github/workflows/studionet.yml` is a separate optional **public testnet** proof. Direct tests alone do not establish finalized on-chain consensus; never claim deployment without the real Explorer receipt.
+`.github/workflows/checks.yml` runs SDK Direct tests and GenVM lint. `.github/workflows/studionet.yml` is a separate optional **public testnet** proof. Public Studionet deployment and transaction state read-back now verified. These tests are distinct from in-process Direct SDK checks.
 
 See [SUBMISSION.md](SUBMISSION.md) for the Portal information and verified evidence once available.
+
+## Public Studionet proof
+
+- [Contract on GenLayer Explorer](https://explorer-studio.genlayer.com/address/0x0eB4387956775E5BA9aC08F4AfF10E69678E10Bf)
+- [Successful deployment, writes, and read-back tests](https://github.com/maho0638/SkillProof/actions/runs/42606514810)
+- Verified result: `MEETS_RUBRIC`
+- Mainnet deployment: **not performed**

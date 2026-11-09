@@ -1,20 +1,27 @@
-# SkillProof — Rubric-based learning assessment on GenLayer
+# SkillProof v2 — AI-matched peer learning, two-party attestation
 
-A compact GenLayer Intelligent Contract for assessing short, **public** learning responses against a clearly stated rubric.
+**A new protocol, replacing the earlier rubric-grading prototype.**
 
-**Different from previous projects:** SkillProof reviews a learner's demonstrated reasoning against an educational rubric, not legal contract language, refrigerated shipment temperatures, or environmental claims.
+SkillProof is a GenLayer Intelligent Contract that pairs a public **mentoring offer** with a learner's **learning goal** by validator-reviewed AI semantic matching. If the topics fit, the protocol opens an exchange between **two different addresses**. An on-chain completion receipt exists **only when both participants independently submit the same 64-character SHA-256 digest** of their shared session notes.
 
-## How it works
+This is a reciprocal-consent protocol, **not AI grading**. There are no PASS/FAIL rubric results, no credentials, no tokens, no escrow, no learner scores and no automated proof of real-world attendance.
 
-- `submit(exercise_id, topic, rubric, learner_response)` writes a public exercise using a unique identifier.
-- `assess(exercise_id)` allows only the submitter to request a single AI assessment. Independent GenLayer validators re-evaluate the response and must agree on **MEETS_RUBRIC**, **NEEDS_REVISION**, or **INCONCLUSIVE**.
-- `get_exercise(exercise_id)` returns the publicly stored rubric, response and decision.
+## Mechanism
 
-The rubric is set by the submitter and cannot be changed afterward. Repeated assessments, unauthorized review, invalid inputs and malformed model outputs are rejected. There is no transferable certificate, escrow, payment or credential.
+1. **Mentor publishes** an immutable public skill offer with an outline and session duration (15–180 minutes).
+2. **Learner requests** an exchange using an independent address and their learning objective. GenLayer leader and validators independently re-evaluate semantic compatibility; they must agree on MATCH/NO_MATCH.
+3. **Both parties attest** the *same* SHA-256 digest of a mutually understood session-note document. A mismatching digest is rejected without changing state.
+4. **Public receipt** records distinct teacher and learner addresses and a common agreed session digest only after BOTH signatures. The receipt is neither transferable nor revocable.
 
-**Limitations:** The result is formative automated feedback, *not* a verified skill credential, academic grade or proof of a student's identity. The contract does not authenticate authorship, prevent plagiarism or verify the rubric's quality. All submitted responses are publicly visible; do not submit personal/student data.
+Methods: `publish_offer`, `request_exchange`, `attest_session`, `get_offer`, `get_exchange`.
 
-## Verification
+## What makes this different
+
+Prior RubricLedger and TenderLens are criteria-based task acceptance or tender evaluation contracts. SkillProof v2 **never evaluates a submitted answer against criteria**. Its consensus operation only matches learning topics; the state transition with value is **mutual cryptographic-content attestation requiring two wallets**. A learner cannot produce an attestation alone, and an uninterested mentor can decline by not signing.
+
+**Limitations:** Nothing authenticates a participant's real-world skills, note content, learning outcomes or attendance. Two cooperating addresses can make false claims, and wallet addresses are not verified identities. Text and hashes are public. Do not store student/private information.
+
+## Reproduce official Direct SDK tests
 
 ```bash
 python -m pip install 'genlayer-py @ git+https://github.com/genlayerlabs/genlayer-py@v0.18' 'genlayer-test @ git+https://github.com/genlayerlabs/genlayer-testing-suite@v0.29' 'genvm-linter @ git+https://github.com/genlayerlabs/genvm-linter@main' pytest
@@ -22,13 +29,4 @@ python -m pytest -q tests/test_direct_sdk.py
 genvm-lint check contracts/SkillProof.py
 ```
 
-`.github/workflows/checks.yml` runs SDK Direct tests and GenVM lint. `.github/workflows/studionet.yml` is a separate optional **public testnet** proof. Public Studionet deployment and transaction state read-back now verified. These tests are distinct from in-process Direct SDK checks.
-
-See [SUBMISSION.md](SUBMISSION.md) for the Portal information and verified evidence once available.
-
-## Public Studionet proof
-
-- [Contract on GenLayer Explorer](https://explorer-studio.genlayer.com/address/0x0eB4387956775E5BA9aC08F4AfF10E69678E10Bf)
-- [Successful deployment, writes, and read-back tests](https://github.com/maho0638/SkillProof/actions/runs/42606514810)
-- Verified result: `MEETS_RUBRIC`
-- Mainnet deployment: **not performed**
+**Evidence policy:** Previous SkillProof v1 Studionet deployment and its receipt are historical and **do not validate this v2 contract**. This rebuild requires a fresh v2 deployment and live receipt before a GenLayer Portal submission.

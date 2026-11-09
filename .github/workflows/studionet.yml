@@ -1,13 +1,13 @@
-name: SkillProof public Studionet proof
+name: SkillProof v2 public Studionet proof
 on:
-  # Manual only to avoid repeat testnet transaction fees on pushes.
+  # Manual only: testnet transactions cost faucet GEN and must be authorized.
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   live:
     runs-on: ubuntu-latest
-    timeout-minutes: 48
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

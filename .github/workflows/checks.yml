@@ -1,4 +1,4 @@
-name: SkillProof checks
+name: SkillProof v2 verification
 on:
   push:
     branches: [main]
@@ -8,17 +8,17 @@ permissions:
 jobs:
   direct-and-lint:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install validated GenLayer SDK and linter
+      - name: Install pinned GenLayer SDK and linter
         run: python -m pip install 'genlayer-py @ git+https://github.com/genlayerlabs/genlayer-py@v0.18' 'genlayer-test @ git+https://github.com/genlayerlabs/genlayer-testing-suite@v0.29' 'genvm-linter @ git+https://github.com/genlayerlabs/genvm-linter@main' pytest
-      - name: Validate syntax
+      - name: Python syntax
         run: python -m compileall -q contracts tests
-      - name: Official GenLayer SDK Direct tests
+      - name: Official SDK Direct tests
         run: python -m pytest -q tests/test_direct_sdk.py
-      - name: GenVM static contract check
+      - name: GenVM lint
         run: genvm-lint check contracts/SkillProof.py

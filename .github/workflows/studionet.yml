@@ -1,5 +1,8 @@
 name: SkillProof public Studionet proof
 on:
+  push:
+    paths:
+      - '.github/workflows/studionet.yml'
   workflow_dispatch:
 permissions:
   contents: read
